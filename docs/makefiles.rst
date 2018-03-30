@@ -131,8 +131,14 @@ Your tests must compile with the CFLAG ``--coverage`` (see Generic Makefile). Th
 .. admonition:: Tip
    :class: hint
 
-   Make a rule to clean all your ``.gcda`` and ``.gcno`` files.
+   Make a rule to clean all your ``.gcda`` and ``.gcno`` files, such as :
 
+.. code-block:: none
+
+   CLEAR =  $(SRC:.c=.gcda) $(SRC:.c=.gcdno)
+
+   clean:   rm -f $(CLEAR)
+ 
 Now, when you launch your tests_run rule, your binary of tests should compile again and execute so that you can see if you passed tough your tests.
 You should see your files from --coverage. You can use the gcov [files] to see how many line were executed when you launch your unit tests.
 
